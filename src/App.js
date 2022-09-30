@@ -1,11 +1,18 @@
 
 import './App.css';
-import ReducerPage from './Components/ReducerPage';
+import CustomHook from './Components/CustomHook';
+// import ReducerPage from './Components/ReducerPage';
 
 function App() {
   return (
     <div className="App">
-      <ReducerPage />
+
+      {/* Use Reducer Task */}
+      {/* <ReducerPage /> */}
+
+      {/* Custome Hook Task */}
+      <CustomHook />
+
     </div>
   );
 }

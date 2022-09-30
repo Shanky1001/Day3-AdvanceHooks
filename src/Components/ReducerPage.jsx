@@ -1,9 +1,17 @@
-import { Button, Card, Checkbox, FormLayout, Layout, Modal, Page, RadioButton, Stack, TextContainer, TextField } from '@shopify/polaris'
-import React, { useState } from 'react'
+import { Button, Card, Checkbox, DescriptionList, FormLayout, Layout, Modal, Page, RadioButton, Stack, TextContainer, TextField } from '@shopify/polaris'
+import React, { useReducer, useState } from 'react'
+import { actions } from '../Actions';
+import { FormReducer } from '../Reducer';
 
 const ReducerPage = () => {
 
-    const [active, setActive] = useState(false)
+    const [active, setActive] = useState(false);
+
+    const [formValue] = useState({
+        title: '', desc: '', handleTime: '', amazonSKU: '', barcode: false, amazonCategory: '', imageSelect: ''
+    })
+
+    const [form, dispatch] = useReducer(FormReducer, formValue)
 
     return (
         <Page fullWidth>
@@ -12,7 +20,9 @@ const ReducerPage = () => {
                     description="Shopify and your customers will use this information to contact you." >
                     <Card sectioned>
                         <FormLayout>
-                            <TextField onChange={() => { }}
+                            <TextField value={form.title} onChange={(e) => dispatch({
+                                type: actions.CHANGE_TITLE, payload: e
+                            })}
                                 autoComplete="off" />
                         </FormLayout>
                     </Card>
@@ -21,7 +31,9 @@ const ReducerPage = () => {
                     description="Shopify and your customers will use this information to contact you." >
                     <Card sectioned>
                         <FormLayout>
-                            <TextField onChange={() => { }}
+                            <TextField value={form.desc} onChange={(e) => dispatch({
+                                type: actions.CHANGE_DESC, payload: e
+                            })}
                                 autoComplete="off" />
 
                         </FormLayout>
@@ -31,7 +43,9 @@ const ReducerPage = () => {
                     description="Shopify and your customers will use this information to contact you." >
                     <Card sectioned>
                         <FormLayout>
-                            <TextField onChange={() => { }}
+                            <TextField value={form.handleTime} onChange={(e) => dispatch({
+                                type: actions.CHANGE_TIME, payload: e
+                            })}
                                 autoComplete="off" />
                         </FormLayout>
                     </Card>
@@ -40,7 +54,9 @@ const ReducerPage = () => {
                     description="Shopify and your customers will use this information to contact you." >
                     <Card sectioned>
                         <FormLayout>
-                            <TextField type='number' onChange={() => { }}
+                            <TextField type='number' value={form.amazonSKU} onChange={(e) => dispatch({
+                                type: actions.CHANGE_SKU, payload: e
+                            })}
                                 autoComplete="off" />
 
                         </FormLayout>
@@ -50,10 +66,10 @@ const ReducerPage = () => {
                     description="Shopify and your customers will use this information to contact you." >
                     <Card sectioned>
                         <FormLayout>
-                            <Checkbox
-                                label="Barcode/GTIN Exemption"
-                                checked={''}
-                                onChange={'handleChange'}
+                            <Checkbox label="Barcode/GTIN Exemption" checked={form.barcode}
+                                onChange={(e) => dispatch({
+                                    type: actions.CHANGE_BARCODE
+                                })}
                             />
                         </FormLayout>
                     </Card>
@@ -62,7 +78,9 @@ const ReducerPage = () => {
                     description="Shopify and your customers will use this information to contact you." >
                     <Card sectioned>
                         <FormLayout>
-                            <TextField onChange={() => { }}
+                            <TextField value={form.amazonCategory} onChange={(e) => dispatch({
+                                type: actions.CHANGE_AMA_CAT, payload: e
+                            })}
                                 autoComplete="off" />
                         </FormLayout>
                     </Card>
@@ -74,15 +92,21 @@ const ReducerPage = () => {
                             <Stack vertical>
                                 <RadioButton
                                     label="Set product image similar to shopify"
-
                                     name="image"
-                                    onChange={''}
+                                    id='shopify'
+                                    checked={'shopify' === form.imageSelect && true}
+                                    onChange={(e) => dispatch({
+                                        type: actions.CHANGE_IAMGE, payload: 'shopify'
+                                    })}
                                 />
                                 <RadioButton
                                     label="set custome Amazon images"
-
                                     name="image"
-                                    onChange={''}
+                                    id='amazon'
+                                    checked={'amazon' === form.imageSelect && true}
+                                    onChange={(e) => dispatch({
+                                        type: actions.CHANGE_IAMGE, payload: 'amazon'
+                                    })}
                                 />
                             </Stack>
                         </FormLayout>
@@ -90,21 +114,55 @@ const ReducerPage = () => {
                 </Layout.AnnotatedSection>
             </Layout>
 
-            <div style={{ margin: "2rem 0", float: "right" }}> <Button primary onClick={() => {setActive(true) }} >Add product</Button></div>
+            <div style={{ margin: "2rem 0", float: "right" }}> <Button primary onClick={() => { setActive(true) }} >Add product</Button></div>
 
-                <Modal open={active} onClose={() => setActive(false)}
-                    title="Details Submited through form">
-                    <Modal.Section>
-                        <TextContainer>
-                            <p>
-                                Use Instagram posts to share your products with millions of
-                                people. Let shoppers buy from your store without leaving
-                                Instagram.
-                            </p>
-                        </TextContainer>
-                    </Modal.Section>
-                </Modal>
-       
+            <Modal open={active} onClose={() => setActive(false)}
+                title="Details Submited through form">
+                <Modal.Section>
+                    <TextContainer>
+                        <DescriptionList
+                            items={[
+                                {
+                                    term: 'Title',
+                                    description:
+                                        form.title,
+                                },
+                                {
+                                    term: 'Description',
+                                    description:
+                                        form.desc
+                                },
+                                {
+                                    term: 'Handling Time',
+                                    description:
+                                        form.handleTime,
+                                },
+                                {
+                                    term: 'Amazon Parent SKU',
+                                    description:
+                                        form.amazonSKU,
+                                },
+                                {
+                                    term: 'Barcode/GTIN Exemption',
+                                    description:
+                                        form.barcode.toString(),
+                                },
+                                {
+                                    term: 'Add Amazon Category',
+                                    description:
+                                        form.amazonCategory,
+                                },
+                                {
+                                    term: 'Image Selection',
+                                    description:
+                                        form.imageSelect,
+                                },
+                            ]}
+                        />
+                    </TextContainer>
+                </Modal.Section>
+            </Modal>
+
         </Page>
     )
 }

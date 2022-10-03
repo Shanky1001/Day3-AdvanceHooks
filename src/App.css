@@ -10,3 +10,13 @@
     border: 1px solid red;
     border-radius: 10px;
 }
+.Component0Container>h1{
+    font-size: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.Component1 h1,.Component2 h1,.Component3 h1{
+    font-size: 1.5rem;
+    margin: 2rem 0;
+}

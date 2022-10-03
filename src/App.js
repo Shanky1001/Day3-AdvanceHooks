@@ -1,7 +1,8 @@
 
 import './App.css';
 // import CustomHook from './Components/CustomHook';
-import MemoTask from './Components/MemoTask';
+// import MemoTask from './Components/MemoTask';
+import Component0 from './Components/Use Callback Components/Component0';
 // import ReducerPage from './Components/ReducerPage';
 
 function App() {
@@ -15,7 +16,10 @@ function App() {
       {/* <CustomHook /> */}
 
       {/* UseMemo Task */}
-      <MemoTask />
+      {/* <MemoTask /> */}
+
+      {/* UseCallback Task */}
+      <Component0 />
 
 
     </div>

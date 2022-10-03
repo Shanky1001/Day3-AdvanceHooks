@@ -4,7 +4,7 @@ import React, { memo, useCallback } from 'react'
 const Component1 = ({ value1, setValue1 }) => {
     const inputHandle = useCallback((e) => {
         setValue1(e);
-    console.log('component 1 rendering');
+        console.log('component 1 rendering');
     }, [setValue1])
 
 

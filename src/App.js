@@ -1,6 +1,7 @@
 
 import './App.css';
-import CustomHook from './Components/CustomHook';
+// import CustomHook from './Components/CustomHook';
+import MemoTask from './Components/MemoTask';
 // import ReducerPage from './Components/ReducerPage';
 
 function App() {
@@ -11,7 +12,11 @@ function App() {
       {/* <ReducerPage /> */}
 
       {/* Custome Hook Task */}
-      <CustomHook />
+      {/* <CustomHook /> */}
+
+      {/* UseMemo Task */}
+      <MemoTask />
+
 
     </div>
   );

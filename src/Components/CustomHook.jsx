@@ -1,5 +1,6 @@
 import { Button, FormLayout, TextField } from '@shopify/polaris'
 import React, { useState } from 'react'
+import '../App.css'
 import { useFetch } from '../useFetch'
 
 const CustomHook = () => {

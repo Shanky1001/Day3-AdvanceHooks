@@ -15,6 +15,7 @@ const ReducerPage = () => {
 
     return (
         <Page fullWidth>
+            {/* Form starts -----> */}
             <Layout>
                 <Layout.AnnotatedSection id="Title" title="Title"
                     description="Shopify and your customers will use this information to contact you." >
@@ -113,9 +114,12 @@ const ReducerPage = () => {
                     </Card>
                 </Layout.AnnotatedSection>
             </Layout>
+            
+            {/* Form Ends -----> */}
 
             <div style={{ margin: "2rem 0", float: "right" }}> <Button primary onClick={() => { setActive(true) }} >Add product</Button></div>
 
+            {/* Modal For From data display */}
             <Modal open={active} onClose={() => setActive(false)}
                 title="Details Submited through form">
                 <Modal.Section>

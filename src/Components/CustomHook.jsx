@@ -3,12 +3,19 @@ import React, { useState } from 'react'
 import { useFetch } from '../useFetch'
 
 const CustomHook = () => {
-
-    const [form, setForm] = useState({ api: '', limit: '', method: '', payload:'' })
+    const [form, setForm] = useState({ api: '', method: '', payload: '' })
     const [data, setData] = useFetch();
 
+    const fetchData = () => {
+        if (form.api === '' || form.method === '') {
+            alert('Please enter details in form');
+        } else {
+            setData(form.api, form.method);
+        }
+    }
 
-    
+
+
 
     return (
         <div className="customHook">
@@ -17,18 +24,15 @@ const CustomHook = () => {
 
             <FormLayout>
                 <TextField label="API" value={form.api} onChange={(e) => setForm({ ...form, api: e })} />
-                {/* <TextField
-                    label="Limit" value={form.limit}
-                    onChange={(e) => setForm({ ...form, limit: e })} /> */}
                 <TextField
                     label="Method" value={form.method}
                     onChange={(e) => setForm({ ...form, method: e })} />
-                <TextField
-                    label="Payload" value={form.payload.toString()}
-                    onChange={(e) => setForm({ ...form, payload: e })} />
 
-                <Button onClick={() => {setData(form.api,form.method);console.log(data)}}> Fetch Data </Button>
+
+                <Button onClick={fetchData}> Fetch Data </Button>
             </FormLayout>
+
+            {data && console.log(data)}
         </div>
     )
 }

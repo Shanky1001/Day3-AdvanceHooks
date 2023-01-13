@@ -1,6 +1,6 @@
 import { TextField } from '@shopify/polaris';
 import React, { useMemo, useState } from 'react';
-import '../App.css'
+import '../App.css';
 
 const MemoTask = () => {
     const [number, setNumber] = useState({ num1: '', num2: '' })

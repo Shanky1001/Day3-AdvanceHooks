@@ -1,5 +1,5 @@
-import { Button, Card, Checkbox, DescriptionList, FormLayout, Layout, Modal, Page, RadioButton, Stack, TextContainer, TextField } from '@shopify/polaris'
-import React, { useReducer, useState } from 'react'
+import { Button, Card, Checkbox, DescriptionList, FormLayout, Layout, Modal, Page, RadioButton, Stack, TextContainer, TextField } from '@shopify/polaris';
+import React, { useReducer, useState } from 'react';
 import { actions } from '../Actions';
 import { FormReducer } from '../Reducer';
 

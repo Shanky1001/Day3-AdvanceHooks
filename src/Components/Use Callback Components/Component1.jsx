@@ -1,5 +1,5 @@
-import { TextField } from '@shopify/polaris'
-import React, { memo } from 'react'
+import { TextField } from '@shopify/polaris';
+import React, { memo } from 'react';
 
 const Component1 = ({ value1, inputHandle1 }) => {
 

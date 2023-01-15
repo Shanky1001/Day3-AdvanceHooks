@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo } from 'react';
 
 const Component3 = ({ value2 }) => {
     console.log('component 3 rendering');
